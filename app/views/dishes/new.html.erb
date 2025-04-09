@@ -1,0 +1,29 @@
+<h1>Novo Prato</h1>
+
+<%= form_with model: @dish, local: true do |form|%>
+    <div>
+        <%= form.label :name, "Nome do Prato"%><br>
+        <%= form.text_field :name %>
+    </div>
+
+    <div>
+        <%= form.label :description, "Descrição do Prato"%><br>
+        <%= form.text_area :description %>
+    </div>
+
+    <div>
+        <%= form.label :price, "Preço do Prato"%><br>
+        <%= form.number_field :price, step: 0.01 %>
+    </div>
+
+    <div>
+        <%= form.label :special, "Prato Especial?"%><br>
+        <%= form.check_box :special %>
+    </div>
+
+    <div>
+        <%= form.submit "Cadastrar"%>
+    </div>
+<%end%>
+
+<%= link_to "Voltar", dishes_path %>

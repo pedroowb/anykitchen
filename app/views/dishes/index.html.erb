@@ -1,0 +1,17 @@
+<h1>Pratos Disponíveis</h1>
+
+<% if @dishes.any? %>
+    <ul>
+        <% @dishes.each do |dish|%>
+            <li>
+                <strong><%= dish.name %></strong> — R$ <%= number_to_currency(dish.price, unit: "", separator: ",", delimiter: ".") %><br>
+                <span><%= dish.description%></span>
+                <% if dish.special? %>
+                    <span style="color: green; font-weight: bold; font-size: 16px;">Prato Especial!</span>
+                <%end%>
+            </li>
+        <%end%>
+    </ul>
+<% else %>
+    <p>Não há pratos disponíveis.</p>
+<% end %>
