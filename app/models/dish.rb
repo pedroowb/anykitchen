@@ -1,3 +1,3 @@
 class Dish < ApplicationRecord
-  # A lógica vem aqui dentro
+  belongs_to :category
 end
