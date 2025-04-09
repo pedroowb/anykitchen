@@ -12,6 +12,11 @@
     </div>
 
     <div>
+    <%= form.label :category_id, "Categoria" %><br>
+    <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Selecione uma categoria" %>
+    </div>
+
+    <div>
         <%= form.label :price, "Preço do Prato"%><br>
         <%= form.number_field :price, step: 0.01 %>
     </div>

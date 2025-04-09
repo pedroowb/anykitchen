@@ -1,4 +1,7 @@
 class DishesController < ApplicationController
+  
+  before_action :require_admin, except: [:index, :show]
+
   def index
     @dishes = Dish.all
   end
@@ -43,5 +46,11 @@ class DishesController < ApplicationController
 
   def dish_params
     params.require(:dish).permit(:name, :description, :price, :special, :category_id)
+  end
+
+  def require_admin
+    unless session[:admin]
+      redirect_to login_path, alert: "Você precisa estar logado como admin para acessar essa seção."
+    end
   end
 end
