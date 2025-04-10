@@ -1,25 +1,56 @@
-<h1>Pratos Disponíveis</h1>
+<div class="container my-5">
+  <h1 class="text-center text-success mb-4">Pratos Disponíveis</h1>
 
-<% if admin? %>
-    <%= link_to "Novo Prato", new_dish_path %>
-<% end %>
+  <% if admin? %>
+    <div class="text-center mb-4">
+      <%= link_to "Novo Prato", new_dish_path, class: "btn btn-outline-success btn-lg rounded-pill" %>
+    </div>
+  <% end %>
 
-<% if @dishes.any? %>
-    <ul>
-        <% @dishes.each do |dish|%>
-            <li>
-                <strong><%= dish.name %></strong> — R$ <%= format_price(dish.price) %><br>
-                <span><%= dish.description%></span>
-                <% if dish.special? %>
-                    <span style="color: green; font-weight: bold; font-size: 16px;">Prato Especial!</span>
-                <%end%>
+  <!-- Pratos do dia (Special) -->
+  <h2 class="text-center text-success mb-4">Prato do Dia</h2>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% @dishes.select(&:special?).each do |dish| %>
+      <div class="col">
+        <div class="card shadow-sm border-0 rounded-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= dish.name %></h5>
+            <p class="card-text"><%= dish.description %></p>
+            <p class="text-success font-weight-bold"><%= format_price(dish.price) %></p>
+            <span class="badge bg-success">Prato Especial</span>
+          </div>
+          <div class="card-footer bg-white border-0 text-center">
+            <%= link_to "Editar", edit_dish_path(dish), class: "btn btn-warning btn-sm rounded-pill" %>
+            <%= button_to "Excluir", dish_path(dish), method: :delete, class: "btn btn-danger btn-sm rounded-pill", data: { confirm: "Tem certeza que deseja excluir esse prato?" } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-                <%= link_to "Editar", edit_dish_path(dish) %>
-                <%= button_to "Excluir", dish_path(dish), method: :delete, data: { confirm: "Tem certeza que deseja excluir esse prato?" } %>
+  <!-- Categorias e seus pratos -->
+  <% @dishes.select { |dish| !dish.special? }.group_by(&:category).each do |category, dishes| %>
+    <h2 class="text-center text-success mt-5 mb-3"><%= category.name %></h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <% dishes.each do |dish| %>
+        <div class="col">
+          <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-body">
+              <h5 class="card-title"><%= dish.name %></h5>
+              <p class="card-text"><%= dish.description %></p>
+              <p class="text-success font-weight-bold"><%= format_price(dish.price) %></p>
+            </div>
+            <div class="card-footer bg-white border-0 text-center">
+              <%= link_to "Editar", edit_dish_path(dish), class: "btn btn-warning btn-sm rounded-pill" %>
+              <%= button_to "Excluir", dish_path(dish), method: :delete, class: "btn btn-danger btn-sm rounded-pill", data: { confirm: "Tem certeza que deseja excluir esse prato?" } %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
-            </li>
-        <%end%>
-    </ul>
-<% else %>
-    <p>Não há pratos disponíveis.</p>
-<% end %>
+  <% if @dishes.empty? %>
+    <p class="text-center">Não há pratos disponíveis.</p>
+  <% end %>
+</div>

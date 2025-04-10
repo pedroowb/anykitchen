@@ -1,16 +1,22 @@
-<h1><%= @dish.name %></h1>
+<div class="container my-5">
+  <h1 class="text-center text-success mb-4"><%= @dish.name %></h1>
 
-<p><strong>Descrição:</strong> <%= @dish.description %></p>
-<p><strong>Preço:</strong> R$ <%= number_to_currency(@dish.price, unit: "", separator: ",", delimiter: ".") %></p>
+  <div class="card shadow-sm border-0 rounded-3 p-4 mb-4" style="background-color: #e9f8ec;">
+    <p><strong>Descrição:</strong> <%= @dish.description %></p>
+    <p><strong>Preço:</strong> R$ <%= number_to_currency(@dish.price, unit: "", separator: ",", delimiter: ".") %></p>
 
-<% if @dish.special? %>
-  <p><strong>Este é um prato especial!</strong></p>
-<% end %>
+    <% if @dish.special? %>
+      <p class="text-success"><strong>Este é um prato especial!</strong></p>
+    <% end %>
 
-<% if @dish.category %>
-  <p><strong>Categoria:</strong> <%= @dish.category.name %></p>
-<% else %>
-  <p><em>Sem categoria definida.</em></p>
-<% end %>
+    <% if @dish.category %>
+      <p><strong>Categoria:</strong> <%= @dish.category.name %></p>
+    <% else %>
+      <p><em>Sem categoria definida.</em></p>
+    <% end %>
+  </div>
 
-<%= link_to "Voltar", dishes_path %>
+  <div class="text-center">
+    <%= link_to "Voltar", dishes_path, class: "btn btn-outline-secondary btn-lg rounded-pill" %>
+  </div>
+</div>

@@ -1,5 +1,9 @@
-<h1>Editar Prato</h1>
+<div class="container my-5">
+  <h1 class="text-center text-success mb-4">Editar Prato</h1>
 
-<%= render "form", dish: @dish %>
+  <%= render "form", dish: @dish %>
 
-<%= link_to "Voltar", dishes_path %>
+  <div class="text-center mt-4">
+    <%= link_to "Voltar", dishes_path, class: "btn btn-outline-secondary btn-lg rounded-pill" %>
+  </div>
+</div>

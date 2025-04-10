@@ -1,8 +1,11 @@
-<h1>Bem-vindo ao AnyKitchen</h1>
-<p>Escolha uma opção:</p>
-<p>
-    <%= link_to "Ver Cardápio", dishes_path %>
-</p>
-<p>
-    <%= link_to "Gerenciar", login_path %>
-</p>
+<div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center bg-white text-center">
+  <div class="card p-5 shadow rounded-4 border-0" style="max-width: 400px; background-color: #e9f8ec;">
+    <h1 class="mb-4 fw-bold text-success">Bem-vindo ao Belle Époque</h1>
+    <p class="mb-4">Escolha uma opção abaixo:</p>
+
+    <div class="d-grid gap-3">
+      <%= link_to "Ver Cardápio", dishes_path, class: "btn btn-outline-success btn-lg rounded-pill" %>
+      <%= link_to "Gerenciar", login_path, class: "btn btn-success btn-lg rounded-pill" %>
+    </div>
+  </div>
+</div>

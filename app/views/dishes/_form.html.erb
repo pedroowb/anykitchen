@@ -1,30 +1,35 @@
-<%= form_with model: dish, local: true do |form| %>
-    <div>
-        <%= form.label :name, "Nome do Prato"%><br>
-        <%= form.text_field :name %>
+<div class="container my-5">
+  <h2 class="text-center text-success mb-4">Cadastrar Prato</h2>
+
+  <%= form_with model: dish, local: true do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, "Nome do Prato", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Digite o nome do prato" %>
     </div>
 
-    <div>
-        <%= form.label :description, "Descrição do Prato"%><br>
-        <%= form.text_area :description %>
+    <div class="mb-3">
+      <%= form.label :description, "Descrição do Prato", class: "form-label" %>
+      <%= form.text_area :description, class: "form-control", placeholder: "Descreva o prato", rows: 4 %>
     </div>
 
-    <div>
-    <%= form.label :category_id, "Categoria" %><br>
-    <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Selecione uma categoria" %>
+    <div class="mb-3">
+      <%= form.label :category_id, "Categoria", class: "form-label" %>
+      <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Selecione uma categoria" }, class: "form-select" %>
     </div>
 
-    <div>
-        <%= form.label :price, "Preço do Prato"%><br>
-        <%= form.number_field :price, step: 0.01 %>
+    <div class="mb-3">
+      <%= form.label :price, "Preço do Prato", class: "form-label" %>
+      <%= form.number_field :price, step: 0.01, class: "form-control", placeholder: "Preço do prato" %>
     </div>
 
-    <div>
-        <%= form.label :special, "Prato Especial?"%><br>
-        <%= form.check_box :special %>
+    <div class="mb-3">
+      <%= form.label :special, "Prato Especial?", class: "form-label" %><br>
+      <%= form.check_box :special, class: "form-check-input" %>
+      <%= form.label :special, "Marque se for especial", class: "form-check-label" %>
     </div>
 
-    <div>
-        <%= form.submit "Cadastrar"%>
+    <div class="d-flex justify-content-center">
+      <%= form.submit "Cadastrar", class: "btn btn-success btn-lg rounded-pill w-50" %>
     </div>
-<%end%>
+  <% end %>
+</div>
