@@ -1,14 +1,22 @@
 <h1>Pratos Disponíveis</h1>
 
+<% if admin? %>
+    <%= link_to "Novo Prato", new_dish_path %>
+<% end %>
+
 <% if @dishes.any? %>
     <ul>
         <% @dishes.each do |dish|%>
             <li>
-                <strong><%= dish.name %></strong> — R$ <%= number_to_currency(dish.price, unit: "", separator: ",", delimiter: ".") %><br>
+                <strong><%= dish.name %></strong> — R$ <%= format_price(dish.price) %><br>
                 <span><%= dish.description%></span>
                 <% if dish.special? %>
                     <span style="color: green; font-weight: bold; font-size: 16px;">Prato Especial!</span>
                 <%end%>
+
+                <%= link_to "Editar", edit_dish_path(dish) %>
+                <%= button_to "Excluir", dish_path(dish), method: :delete, data: { confirm: "Tem certeza que deseja excluir esse prato?" } %>
+
             </li>
         <%end%>
     </ul>

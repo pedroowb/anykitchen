@@ -1,0 +1,16 @@
+<h1><%= @dish.name %></h1>
+
+<p><strong>Descrição:</strong> <%= @dish.description %></p>
+<p><strong>Preço:</strong> R$ <%= number_to_currency(@dish.price, unit: "", separator: ",", delimiter: ".") %></p>
+
+<% if @dish.special? %>
+  <p><strong>Este é um prato especial!</strong></p>
+<% end %>
+
+<% if @dish.category %>
+  <p><strong>Categoria:</strong> <%= @dish.category.name %></p>
+<% else %>
+  <p><em>Sem categoria definida.</em></p>
+<% end %>
+
+<%= link_to "Voltar", dishes_path %>
