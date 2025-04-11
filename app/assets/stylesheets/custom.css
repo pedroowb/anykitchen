@@ -1,8 +1,41 @@
 .background-custom {
-    background-image: url("background.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
-  
+  background-image: url("background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.dish-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s;
+}
+
+.dish-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+}
+
+.transition-navbar {
+  background-color: transparent !important;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: none;
+  transition: all 0.3s ease-in-out;
+}
+
+
+/* Corrige o botão original do Bootstrap */
+.navbar-toggler {
+  border: none;
+  background-color: transparent !important;
+  padding: 0.375rem 0.75rem;
+  box-shadow: none;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(25, 135, 84, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
