@@ -1,5 +1,5 @@
 <div class="container my-5">
-  <h1 class="text-center text-success mb-4">Pratos Disponíveis</h1>
+  <h1 class="text-center text-success mb-4">Menu</h1>
 
   <% if admin? %>
     <div class="text-center mb-4">
@@ -16,12 +16,14 @@
           <div class="card-body">
             <h5 class="card-title"><%= dish.name %></h5>
             <p class="card-text"><%= dish.description %></p>
-            <p class="text-success font-weight-bold"><%= format_price(dish.price) %></p>
+            <p class="text-success font-weight-bold "><%= format_price(dish.price) %></p>
             <span class="badge bg-success">Prato Especial</span>
           </div>
-          <div class="card-footer bg-white border-0 text-center">
-            <%= link_to "Editar", edit_dish_path(dish), class: "btn btn-warning btn-sm rounded-pill" %>
-            <%= button_to "Excluir", dish_path(dish), method: :delete, class: "btn btn-danger btn-sm rounded-pill", data: { confirm: "Tem certeza que deseja excluir esse prato?" } %>
+          <div class="card-footer bg-white border-0 text-center d-inline-flex justify-content-center gap-2">
+            <% if admin? %>
+              <%= link_to "Editar", edit_dish_path(dish), class: "btn btn-warning btn-sm rounded-pill" %>
+              <%= button_to "Excluir", dish_path(dish), method: :delete, class: "btn btn-danger btn-sm rounded-pill", data: { confirm: "Tem certeza que deseja excluir esse prato?" } %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -30,7 +32,7 @@
 
   <!-- Categorias e seus pratos -->
   <% @dishes.select { |dish| !dish.special? }.group_by(&:category).each do |category, dishes| %>
-    <h2 class="text-center text-success mt-5 mb-3"><%= category.name %></h2>
+    <h2 class="text-center text-success mt-5 mb-3 "><%= category.name %></h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       <% dishes.each do |dish| %>
         <div class="col">
@@ -40,9 +42,11 @@
               <p class="card-text"><%= dish.description %></p>
               <p class="text-success font-weight-bold"><%= format_price(dish.price) %></p>
             </div>
-            <div class="card-footer bg-white border-0 text-center">
-              <%= link_to "Editar", edit_dish_path(dish), class: "btn btn-warning btn-sm rounded-pill" %>
-              <%= button_to "Excluir", dish_path(dish), method: :delete, class: "btn btn-danger btn-sm rounded-pill", data: { confirm: "Tem certeza que deseja excluir esse prato?" } %>
+            <div class="card-footer bg-white border-0 text-center d-inline-flex justify-content-center gap-2">
+              <% if admin? %>
+                <%= link_to "Editar", edit_dish_path(dish), class: "btn btn-warning btn-sm rounded-pill" %>
+                <%= button_to "Excluir", dish_path(dish), method: :delete, class: "btn btn-danger btn-sm rounded-pill", data: { confirm: "Tem certeza que deseja excluir esse prato?" } %>
+              <% end %>
             </div>
           </div>
         </div>

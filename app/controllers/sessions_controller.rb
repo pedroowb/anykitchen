@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:admin] = nil
+    session[:admin] = nil 
+    reset_session 
     redirect_to root_path, notice: "Logout realizado com sucesso!"
   end
 
